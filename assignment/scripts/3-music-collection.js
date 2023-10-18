@@ -9,14 +9,16 @@ let myCollection = [];
 // collection, title, artist, yearPublished. Make sure to test!!
 function addToCollection(collection, title, artist, yearPublished) {
   let albums = {
+    collection: collection,
     title: title,
     artist: artist,
     yearPublished: yearPublished
-  }
+  };
   collection.push(albums);
   return albums;
 
 };
+
 
 // Adding 10 albums to myCollection
 console.log('First album is:', addToCollection(myCollection, 'The Lonesome Crowded West', 'Modest Mouse', 1997));
@@ -36,12 +38,12 @@ console.log('Collection is:', myCollection);
 // Loop over the collection and console.log each albums info formatted within a single string 
 // Make sure to test!!
 function showCollection(collection) {
-  for (let i = 0; i < collection.length; i++) {
-    console.log(myCollection[i].title, 'by', myCollection[i].artist, 'published in', myCollection[i].yearPublished);
+  for (let record of collection) {
+    console.log(record.title, 'by', record.artist, 'published in', record.yearPublished);
+    
   }
-  for (let i = 0; i < myCollection.length; i++) {
-    console.log(`There is ${myCollection.length} albums in my collection`);
-  }
+
+  
 };
 console.log('Testing the showCollection:');
 showCollection(myCollection);
@@ -49,22 +51,23 @@ showCollection(myCollection);
 
 // // Create a function called findByArtist that takes in artist parameter and returns it as a string.
 // // Test function with an artist that is in the collection and an artist that isn't in the collection
-// function findByArtist(artist) {
-//   let searchArtist = [];
-//   for (let i = 0; i < myCollection.length; i++) {
-//       if (myCollection[i].artist === artist) {
-//           searchArtist.push(artist);
-//       }
+function findByArtist(artist) {
+  let searchArtist = [];
+  for (let i = 0; i < myCollection.length; i++) {
+      if (myCollection[i].artist === artist) {
+          searchArtist.push(artist);
+      }
      
       
-//   }
-//   return searchArtist;
+  }
+  return searchArtist;
   
-// };
-// // Testing the findByArtist function with an artist that's in my collection
-// console.log('Testing the findByArtist function:', findByArtist('The Black Keys'));
+};
+// Testing the findByArtist function with an artist that's in my collection
+console.log('Testing the findByArtist function:', findByArtist('The Black Keys'));
 
-// Testing the findByArtist function with an artist that is not
+// Testing the findByArtist function with an artist that's not in my collection
+console.log('Testing the findByArtist function:', findByArtist('The Doors'));
 
 // Stretch Goals!!
 
