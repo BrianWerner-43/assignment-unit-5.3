@@ -23,7 +23,7 @@ console.log('First album is:', addToCollection(myCollection, 'The Lonesome Crowd
 console.log('Second album is:', addToCollection(myCollection, 'The Moon & Antartica', 'Modest Mouse', 2000 ));
 console.log('Third album is:', addToCollection(myCollection, 'Siamese Dream', 'Smashing Pumpkins', 1993));
 console.log('Fourth album is:', addToCollection(myCollection, 'Mellon Collie and the Infinite Sadness', 'Smashing Pumpkins', 1995));
-console.log('Fifth album is:', addToCollection(myCollection, 'Windowlicker', 'Aphex twin', 1999 ));
+console.log('Fifth album is:', addToCollection(myCollection, 'Windowlicker', 'Aphex Twin', 1999 ));
 console.log('Sixth album is:', addToCollection(myCollection, 'Richard D. James', 'Aphex Twin', 1996));
 console.log('Seventh album is:', addToCollection(myCollection, 'Let\s Rock', 'The Black Keys', 2019));
 console.log('Eighth album is:', addToCollection(myCollection, 'Magic Potion', 'The Black Keys', 2006));
@@ -35,16 +35,16 @@ console.log('Collection is:', myCollection);
 // Create a function called showCollection that should take in the collection parameter
 // Loop over the collection and console.log each albums info formatted within a single string 
 // Make sure to test!!
-// function showCollection(collection) {
-//   for (let i = 0; i < collection.length; i++) {
-//     console.log(myCollection[i].title, 'by', myCollection[i].artist, 'published in', myCollection[i].yearPublished);
-//   }
-//   for (let i = 0; i < myCollection.length; i++) {
-//     console.log(`There is ${myCollection.length} albums in my collection`);
-//   }
-// };
-// console.log('Testing the showCollection:');
-// showCollection(myCollection);
+function showCollection(collection) {
+  for (let i = 0; i < collection.length; i++) {
+    console.log(myCollection[i].title, 'by', myCollection[i].artist, 'published in', myCollection[i].yearPublished);
+  }
+  for (let i = 0; i < myCollection.length; i++) {
+    console.log(`There is ${myCollection.length} albums in my collection`);
+  }
+};
+console.log('Testing the showCollection:');
+showCollection(myCollection);
 
 
 // // Create a function called findByArtist that takes in artist parameter and returns it as a string.
