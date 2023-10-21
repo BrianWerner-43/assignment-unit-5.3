@@ -4,9 +4,6 @@ console.log('***** Music Collection *****')
 // Create a global variable called myCollection that starts as an empty array
 let myCollection = [];
 
-// Create a global variable called tracks that is equal to an empty array
-// let tracks = [];
-
 
 // Create a function called addToCollection that should have the following input parameters:
 // collection, title, artist, yearPublished. Make sure to test!!
@@ -29,22 +26,19 @@ function addToCollection(collection, title, artist, trackName, yearPublished, du
 
 // Adding 10 albums to myCollection
 
-console.log('First album is:', addToCollection(myCollection, 'The Lonesome Crowded West', 'Modest Mouse', 1997, 'Cowboy Dan', '6:14'));
-console.log('Second album is:', addToCollection(myCollection, 'The Moon & Antartica', 'Modest Mouse', 2000, '3rd Planet', '3:59'));
-console.log('Third album is:', addToCollection(myCollection, 'Siamese Dream', 'Smashing Pumpkins', 1993, 'Mayonaise', '5:49'));
-console.log('Fourth album is:', addToCollection(myCollection, 'Mellon Collie and the Infinite Sadness', 'Smashing Pumpkins', 1995, 'Love', '4:22'));
-console.log('Fifth album is:', addToCollection(myCollection, 'Windowlicker', 'Aphex Twin', 1999, 'Windowlicker', '2:37'));
-console.log('Sixth album is:', addToCollection(myCollection, 'Richard D. James', 'Aphex Twin', 1996, '4', '3:37'));
-console.log('Seventh album is:', addToCollection(myCollection, 'Let\s Rock', 'The Black Keys', 2019, 'Tell Me Lies', '3:40'));
-console.log('Eighth album is:', addToCollection(myCollection, 'Magic Potion', 'The Black Keys', 2006, 'The Flame', '4:36'));
-console.log('Nineth album is:', addToCollection(myCollection, 'Water', 'Dehd', 2019, 'Lucky', '2:34'));
-console.log('Tenth album is:', addToCollection(myCollection, 'Blue Skies', 'Dehd', 2022, 'Bad Love', '2:31'));
+console.log('First album is:', addToCollection(myCollection, 'The Lonesome Crowded West', 'Modest Mouse', 'Cowboy Dan', 1997, '73:58'));
+console.log('Second album is:', addToCollection(myCollection, 'The Moon & Antartica', 'Modest Mouse', '3rd Planet', 2000, '59:43'));
+console.log('Third album is:', addToCollection(myCollection, 'Siamese Dream', 'Smashing Pumpkins','Mayonaise', 1993, '62:08'));
+console.log('Fourth album is:', addToCollection(myCollection, 'Mellon Collie and the Infinite Sadness', 'Smashing Pumpkins', 'Love', 1995, '128:39'));
+console.log('Fifth album is:', addToCollection(myCollection, 'Windowlicker', 'Aphex Twin','Windowlicker', 1999, '2:37'));
+console.log('Sixth album is:', addToCollection(myCollection, 'Richard D. James', 'Aphex Twin','4', 1996, '32:51'));
+console.log('Seventh album is:', addToCollection(myCollection, 'Let\s Rock', 'The Black Keys','Tell Me Lies', 2019, '38:30'));
+console.log('Eighth album is:', addToCollection(myCollection, 'Magic Potion', 'The Black Keys','The Flame', 2006, '40:55'));
+console.log('Nineth album is:', addToCollection(myCollection, 'Water', 'Dehd','Lucky', 2019, '31:37'));
+console.log('Tenth album is:', addToCollection(myCollection, 'Blue Skies', 'Dehd', 'Bad Love', 2022, '32:34'));
 console.log('Collection is:', myCollection);
 
-// ${record.tracks} ${record.duration} // add later into showCollection
-    
-    // My original code for the  for of loop, but getting errors in the test, just wanted to keep it for refrence
-    // console.log(record.title, 'by', record.artist, 'published in', record.yearPublished);
+
 
 
 // Create a function called showCollection that should take in the collection parameter
@@ -95,23 +89,31 @@ console.log(findByArtist(myCollection, 'The Black Crows'));
 // This function should take in a collection and searchCriteria as parameters
 // Take in a searchCriteria parameter
 
-function search(collection, searchCriteria) {
-  let findArtist = [];
-  for (let i = 0; i < collection.length; i++) {
-    if (collection[i].artist === searchCriteria.artist && collection[i].yearPublished === searchCriteria.yearPublished) {
-      if (collection[i].trackName === searchCriteria.trackName && collection[i].duration === searchCriteria.duration) {
-        findArtist.push(collection[i]);
-      }
-    } 
-      
-  }
-  return findArtist;
 
-  
-};
-console.log('Testing the search function with an artist that is my collection');
-// console.log(search(myCollection, 'Cowboy Dan'));
-console.log('Artist that is in my collection', search(myCollection, {artist: 'Modest Mouse', yearPublished: 2000, trackName: '3rd Planet', duration: '3:59'}));
+function search(collection, searchCriteria) {
+  if(!searchCriteria || Object.keys(searchCriteria).length === 0) {
+    return collection;
+  }
+  let foundAlbums = collection.filter(album => {
+    if (searchCriteria.artist && album.artist !== searchCriteria.artist) {
+      return false;
+    }
+    if (searchCriteria.yearPublished && album.yearPublished !== searchCriteria.yearPublished) {
+      return false;
+    }
+    return true;
+  });
+  return foundAlbums;
+
+};// end of search function
+console.log('Testing the search function:');
+console.log('Artist that is in my collection', search(myCollection, 'Modest Mouse', 2000, '3rd Planet', '3:59'));// Returns the entire collection
+// console.log(search(myCollection, {artist: 'Modest Mouse', yearPublished: 2000}));// Returns an empty array
+
+// Testing the search function with an artist that is not in my collection
+console.log('Testing the search function with an artist that is not in my collection:');
+console.log(search(myCollection, 'Counting Crows', 1998));
+
 
 
 
