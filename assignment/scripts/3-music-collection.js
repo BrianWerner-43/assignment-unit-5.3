@@ -47,9 +47,7 @@ console.log('Collection is:', myCollection);
 function showCollection(collection) {
   for (let record of collection) {
     console.log(`${record.title}, by, ${record.artist}, published in, ${record.yearPublished}, ${record.trackName}, ${record.duration}`);
-    
-    
-    
+      
   }
 
   
