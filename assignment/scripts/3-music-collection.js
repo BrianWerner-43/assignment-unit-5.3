@@ -86,31 +86,58 @@ console.log(findByArtist(myCollection, 'The Black Crows'));
 // Create function called search that will allow for searching by artist and year
 // This function should take in a collection and searchCriteria as parameters
 // Take in a searchCriteria parameter
-
-
-function search(collection, searchCriteria) {
-  if(!searchCriteria || Object.keys(searchCriteria).length === 0) {
-    return collection;
-  }
-  let foundAlbums = collection.filter(album => {
-    if (searchCriteria.artist && album.artist !== searchCriteria.artist) {
-      return false;
+// My original code
+function search(collection, searchCriteria) {// This function returns the matching albums in the console, but the test doesn't pass
+    let results = [];
+    for (let i = 0; i < collection.length; i++) {                                                           
+        const album = collection[i];
+        if (searchCriteria.artist && searchCriteria.year) {
+            if (album.artist === searchCriteria.artist && album.year === searchCriteria.year) {
+                results.push(album);
+            }
+        } else if (searchCriteria.artist) {
+            if (album.artist === searchCriteria.artist) {
+                results.push(album);
+            }
+        } else if (searchCriteria.year) {
+            if (album.year === searchCriteria.year) {
+                results.push(album);
+            }
+        }
     }
-    if (searchCriteria.yearPublished && album.yearPublished !== searchCriteria.yearPublished) {
-      return false;
-    }
-    return true;
-  });
-  return foundAlbums;
+    return results;
+  };
+  console.log('Testing the search function:');
+  console.log(search(myCollection, {artist: 'Smashing Pumpkins', yearPublished: 1993}));
+  console.log(search(myCollection, { artist: 'Modest Mouse', yearPublished: 2000 }));
 
-};// end of search function
-console.log('Testing the search function:');
-console.log('Artist that is in my collection', search(myCollection, 'Modest Mouse', 2000, '3rd Planet', '3:59'));// Returns the entire collection
+  // console.log('Searching for an artist that is not in my collection:');
+  // console.log(search(myCollection, {artist: 'The Black Crows', yearPublished: 1994}));
+
+// Got this code using chatgbt as a refrence
+// function search(collection, searchCriteria) {// This function returns the entire collection with an artist that is and isn't in my collection, but the test passes it.
+//   if(!searchCriteria || Object.keys(searchCriteria).length === 0) {
+//     return collection;
+//   }
+//   let foundAlbums = collection.filter(album => {
+//     if (searchCriteria.artist && album.artist !== searchCriteria.artist) {
+//       return false;
+//     }
+//     if (searchCriteria.yearPublished && album.yearPublished !== searchCriteria.yearPublished) {
+//       return false;
+//     }
+//     return true;
+//   });
+//   return foundAlbums;
+
+// };// end of search function
+// console.log('Testing the search function:');
+// console.log('Artist that is in my collection', search(myCollection, 'Modest Mouse', 2000));// Returns the entire collection
 // console.log(search(myCollection, {artist: 'Modest Mouse', yearPublished: 2000}));// Returns an empty array
 
-// Testing the search function with an artist that is not in my collection
-console.log('Testing the search function with an artist that is not in my collection:');
-console.log(search(myCollection, 'Counting Crows', 1998));
+// // Testing the search function with an artist that is not in my collection
+// console.log('Testing the search function with an artist that is not in my collection:');
+// console.log(search(myCollection, 'Counting Crows', 1998));
 
 
 
@@ -132,8 +159,17 @@ console.log(search(myCollection, 'Counting Crows', 1998));
 
 
 
-// Stretch!!
-// Add an array of tracks to our albums in the collection that has a track name and duration
+
+
+
+
+
+
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
